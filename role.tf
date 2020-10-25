@@ -1,6 +1,9 @@
 resource "aws_iam_role" "main" {
   name = format("%s-codebuild", local.name)
 
+  # Due to CodeBuild can attach it's own policies.
+  force_detach_policies = true
+
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
